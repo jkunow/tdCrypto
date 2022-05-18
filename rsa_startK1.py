@@ -323,6 +323,12 @@ def Dec_rsa(sk, c):
 # cle de longueur 512 bits
 # chiffrer: "ceci est le message de la question 12"
 
+e,d,N = gen_rsa(3)
+print(e,d,N)
+C = Enc_rsa(e,"ceci est le message de la question 12")
+M = Dec_rsa(d,C)
+print(C,M)
+
 
 #################################################################
 ##Q13## small N de l enonce 
