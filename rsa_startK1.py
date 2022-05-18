@@ -140,16 +140,16 @@ def prime_with(n):
 # retourne la liste des nombres premiers <= n
 # methode du crible d Eratosthene
 def crible_eras(n):
-    primes = []  
-    numbers = list(range(2, n+1)) 
-    c = 2           
-    while c * c < n: 
-        for k in range(c, (n+1), c): 
-            if k in numbers:              
-                numbers.remove(k)         
-        primes.append(c)             
-        c = numbers[0]                    
-    return primes + numbers          
+    primes = []
+    numbers = list(range(2, n + 1))
+    c = 2
+    while c * c < n:
+        for k in range(c, (n + 1), c):
+            if k in numbers:
+                numbers.remove(k)
+        primes.append(c)
+        c = numbers[0]
+    return primes + numbers
 
 
 # print(crible_eras(25))
@@ -165,13 +165,19 @@ def is_prime_eras(n):
 
 # returne True si n est pseudo-premier pour le temoin a
 def temoin_fermat(a, n):
-    return True
+    return pow(a, n - 1) % n == 1
 
 
 # n entier a tester, t nombre de tests
 def test_fermat(n, t):
+    test = random.sample(range(1, n), t)
+    for i in test:
+        if not temoin_fermat(i, n):
+            return False
     return True
 
+
+# print("Is 6287 prime: " + test_fermat(6287, 6286))
 
 ##Q7
 # returns r,u such that 2^r * u = n and u is odd
