@@ -76,6 +76,7 @@ def int_to_bin(n):
 ## O(log(e)) operations
 def expo_modulaire_rapide(e, b, n):
     ebin = int_to_bin(e)
+    print(ebin)
     opCount = 0
     result = 1
     b = b % n
@@ -89,19 +90,36 @@ def expo_modulaire_rapide(e, b, n):
     return result
 
 
-# print(expo_modulaire_rapide(1048576, 4, 497))
+#print(expo_modulaire_rapide(17, 4, 497))
 
 
 ###tests de primalite###
 
 # retourne True ssi x est premier
 def is_prime_naive(x):
+    if x <= 1:
+        return False
+    for i in range(2,int(x/2)):
+        if x % i == 0:
+            return False
     return True
 
+#print(is_prime_naive(13))
+
+import random
 
 # retourne un entier premier, aleatoire, uniforme sur [a , a+delta]
 def generate_prime(a, delta):
-    return a
+    r = random.randint(a, a+delta)
+    i=0
+    while is_prime_naive(r) == False:
+        if i > 100000:
+            raise Exception('After 100000 iterations no prime was found in the given intervall [{},{}]\nPlease retry with a new intervall'.format(a,a+delta))
+        r = random.randint(a, a+delta)
+        i+=1
+    return r
+
+#print(generate_prime(9,1))
 
 
 # retourne un entier premier avec n, aleatoire, uniforme sur [2, n-1]
@@ -113,8 +131,18 @@ def prime_with(n):
 # retourne la liste des nombres premiers <= n
 # methode du crible d Eratosthene
 def crible_eras(n):
-    return []
+    primes = []  
+    numbers = list(range(2, n+1)) 
+    c = 2           
+    while c * c < n: 
+        for k in range(c, (n+1), c): 
+            if k in numbers:              
+                numbers.remove(k)         
+        primes.append(c)             
+        c = numbers[0]                    
+    return primes + numbers          
 
+#print(crible_eras(25))
 
 # retourne True ssi n est premier;methode du crible
 def is_prime_eras(n):
