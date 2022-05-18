@@ -49,9 +49,7 @@ def inverse_modulaire(a, n):
     g, x, y = euclide_ext(a, n)
     if g != 1:
         raise Exception('modular inverse does not exist')
-    else:
-        return x % n
-    return a
+    return x % n
 
 
 # print(inverse_modulaire(7,20))
@@ -260,13 +258,13 @@ def gen_rsa(n):
 # pk = (e,N)
 # m entier; retourne un entier
 def enc_rsa(m, pk):
-    return 1
+    return m*pk
 
 
 # sk = (d,N)
 # c entier; retourne un entier
 def dec_rsa(c, sk):
-    return 1
+    return c*sk
 
 
 ##Q11
