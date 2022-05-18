@@ -5,7 +5,7 @@ import random
 from math import sqrt
 
 # consider changing it to test stability
-random.seed(1)
+random.seed(64635)
 
 
 ##Q1
@@ -25,6 +25,7 @@ def pgcd(x, y):
 
 def isCoprime(a, b):
     return pgcd(a, b) == 1
+
 
 ##algo euclide etendu
 # retourne d,u,v avec pgcd(x,y)=d=ux+vy
@@ -110,7 +111,7 @@ def expo_modulaire_rapide(e, b, n):
 def is_prime_naive(x):
     if x <= 1:
         return False
-    for i in range(2, int(x / 2)+1):
+    for i in range(2, int(x / 2) + 1):
         if x % i == 0:
             return False
     return True
@@ -137,9 +138,9 @@ def generate_prime(a, delta):
 
 # retourne un entier premier avec n, aleatoire, uniforme sur [2, n-1]
 def prime_with(n):
-    a = random.randint(2, n-1)
+    a = random.randint(2, n - 1)
     while not isCoprime(a, n):
-        a = random.randint(2, n-1)
+        a = random.randint(2, n - 1)
     return a
 
 
@@ -190,14 +191,15 @@ def test_fermat(n, t):
 ##Q7
 # returns r,u such that 2^r * u = n and u is odd
 def find_ru(n):
-    m = int(n/2)+1
+    m = int(n / 2) + 1
     for r in range(m):
         u = 1
-        while u<n:
-            if pow(2,r) * u == n:
+        while u < n:
+            if pow(2, r) * u == n:
                 return r, u
-            u +=2
+            u += 2
     raise Exception('OOPS... something went wrong in find_ru(n)')
+
 
 ##Q8
 # n entier
@@ -205,18 +207,18 @@ def find_ru(n):
 # pgcd(a,n)=1
 # retourne True , si a est un temoin de Rabin de non-primalite de n
 def temoin_rabin(a, n):
-
-    r,u = find_ru(n-1)
+    r, u = find_ru(n - 1)
 
     if pow(a, u) % n == 1:
-        print(a,u, n)
+        print(a, u, n)
         return False
 
     for i in range(r):
-        if pow(a,pow(2,i)*u) % n == -1:
+        if pow(a, pow(2, i) * u) % n == -1:
             print('2')
             return False
     return True
+
 
 # n entier a tester, t nombre de tests
 # retourne True , si n est premier
@@ -224,33 +226,35 @@ def temoin_rabin(a, n):
 def test_rabin(n, t=1):
     if n == 2:
         return True
-    if n%2 == 0:
+    if n % 2 == 0:
         return False
 
     for i in range(t):
-        a = random.randint(2,n-1) 
+        a = random.randint(2, n - 1)
 
-        if pgcd(n,a) > 1:
+        if pgcd(n, a) > 1:
             print('3')
             return False
 
-        if temoin_rabin(a,n) == False:  
+        if temoin_rabin(a, n) == False:
             print('4')
             return False
     return True
 
-#print(test_rabin(1729, 3))
+
+# print(test_rabin(1729, 3))
 
 ##Q9
 # retourne un nombre probablement premier de n bits
 def gen_prime(n):
-    return generate_prime(2, pow(2, n-1) - 1)
+    return generate_prime(2, pow(2, n - 1) - 1)
 
 
 ##print(gen_prime(2048))
 
 def eulersTotient(p, q):
-    return (p-1) * (q-1)
+    return (p - 1) * (q - 1)
+
 
 # retourne un triplet e,d,N avec
 # N = pq, p,q premier de n bits
@@ -275,13 +279,13 @@ def gen_rsa(n):
 # pk = (e,N)
 # m entier; retourne un entier
 def enc_rsa(m, pk):
-    return m*pk
+    return m * pk
 
 
 # sk = (d,N)
 # c entier; retourne un entier
 def dec_rsa(c, sk):
-    return c*sk
+    return c * sk
 
 
 ##Q11
@@ -323,12 +327,11 @@ def Dec_rsa(sk, c):
 # cle de longueur 512 bits
 # chiffrer: "ceci est le message de la question 12"
 
-e,d,N = gen_rsa(3)
-print(e,d,N)
-C = Enc_rsa(e,"ceci est le message de la question 12")
-M = Dec_rsa(d,C)
-print(C,M)
-
+e, d, N = gen_rsa(3)
+print(e, d, N)
+C = Enc_rsa(e, "ceci est le message de la question 12")
+M = Dec_rsa(d, C)
+print(C, M)
 
 #################################################################
 ##Q13## small N de l enonce 
