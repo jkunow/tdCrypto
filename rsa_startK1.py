@@ -108,7 +108,7 @@ def expo_modulaire_rapide(e, b, n):
 def is_prime_naive(x):
     if x <= 1:
         return False
-    for i in range(2, int(x / 2)+1):
+    for i in range(2, int(sqrt(x))+1):
         if x % i == 0:
             return False
     return True
@@ -321,7 +321,7 @@ def Dec_rsa(sk, c):
 # cle de longueur 512 bits
 # chiffrer: "ceci est le message de la question 12"
 
-e,d,N = gen_rsa(3)
+e,d,N = gen_rsa(12)
 print(e,d,N)
 C = Enc_rsa(e,"ceci est le message de la question 12")
 M = Dec_rsa(d,C)
