@@ -21,7 +21,9 @@ def pgcd(x, y):
 # print(pgcd(91,14))
 
 
-def isCoprime(a,b):
+def isCoprime(a, b):
+    if a > b:
+        a, b = b, a
     return pow(a, b - 1) % b == 1
 
 ##algo euclide etendu
