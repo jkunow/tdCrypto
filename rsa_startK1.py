@@ -133,7 +133,7 @@ def generate_prime(a, delta):
 
 # retourne un entier premier avec n, aleatoire, uniforme sur [2, n-1]
 def prime_with(n):
-    return 2
+    return generate_prime(2, n - 1)
 
 
 ##Q5
