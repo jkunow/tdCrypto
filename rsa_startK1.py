@@ -248,7 +248,7 @@ def gen_prime(n):
 ##print(gen_prime(2048))
 
 def eulersTotient(p, q):
-    return (p-q) * (q-1)
+    return (p-1) * (q-1)
 
 # retourne un triplet e,d,N avec
 # N = pq, p,q premier de n bits
