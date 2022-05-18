@@ -4,8 +4,9 @@ import rsa_startK1
 
 
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)  # add assertion here
+    def testPGCD(self):
+        print('fick dich')
+        self.assertEqual(1, rsa_startK1.pgcd(7,8))  # add assertion here
 
     def testCoPrime(self):
 
