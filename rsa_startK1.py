@@ -28,7 +28,15 @@ def inverse_modulaire(a,n):
 ##retourne (b**e) % n
 ##ne manipule que des entiers <= b*b-b
 def expo_modulaire(e,b,n):
-    return b
+    if n == 1:
+        return 0
+    opCount = 0
+    result = 1
+    for i in range (e) :
+        result = (result * b) % n
+        opCount += 1
+    print("opcount = " + str(opCount))
+    return result
 
 ##Q4
 #retourne la representation de n en base 2, poids faible a gauche
