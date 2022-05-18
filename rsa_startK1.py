@@ -11,14 +11,32 @@ random.seed(1)
 ##Q1
 #retourne le pgcd de deux entiers naturels
 def pgcd(x,y):
-    return x
+    while x%y != 0:
+        if y > x:
+            x,y=y,x
+        x = x%y
+    return y
 
+print(pgcd(91,14))
 
 ##algo euclide etendu
 #retourne d,u,v avec pgcd(x,y)=d=ux+vy 
 def euclide_ext(x,y):
-    return x,1,0
+    
+    if x == 0:
+        return y,0,1
+    
+    pgcd,x1,y1 = euclide_ext(y%x,x) 
+    
+    u = y1 - (y//x)*x1
+    v = x1
+     
+    return pgcd,u,v
 
+#x,y=57000,77
+#pgcd,u,v = euclide_ext(x,y)
+
+#print(x, ' * ', u, ' + ', y, ' * ', v, ' = ', pgcd)
 ##Q2
 ##retourne un entier b dans [1,N-1] avec ab=1 modulo N
 def inverse_modulaire(a,n):
