@@ -20,6 +20,10 @@ def pgcd(x, y):
 
 # print(pgcd(91,14))
 
+
+def isCoprime(a,b):
+    return pow(a, b - 1) % b == 1
+
 ##algo euclide etendu
 # retourne d,u,v avec pgcd(x,y)=d=ux+vy
 def euclide_ext(x, y):
@@ -133,7 +137,10 @@ def generate_prime(a, delta):
 
 # retourne un entier premier avec n, aleatoire, uniforme sur [2, n-1]
 def prime_with(n):
-    return generate_prime(2, n - 1)
+    a = random.randint(2, n-1)
+    while not isCoprime(a, n):
+        a = random.randint(2, n-1)
+    return a
 
 
 ##Q5
@@ -165,7 +172,7 @@ def is_prime_eras(n):
 
 # returne True si n est pseudo-premier pour le temoin a
 def temoin_fermat(a, n):
-    return pow(a, n - 1) % n == 1
+    return isCoprime(a, n)
 
 
 # n entier a tester, t nombre de tests
@@ -177,7 +184,8 @@ def test_fermat(n, t):
     return True
 
 
-# print("Is 6287 prime: " + test_fermat(6287, 6286))
+# print("Is 6287 prime: " + str(test_fermat(6287, 6286)))
+# print("Is 6286 prime: " + str(test_fermat(6286, 6285)))
 
 ##Q7
 # returns r,u such that 2^r * u = n and u is odd
