@@ -10,6 +10,11 @@ class MyTestCase(unittest.TestCase):
         
 
     def testCoPrime(self):
+        self.assertEqual(True, rsa.isCoprime(3, 18980))
+        self.assertEqual(False, rsa.isCoprime(9, 81))
+
+
+
 
         self.assertEqual(True, rsa.isCoprime(3, 18980))
 
