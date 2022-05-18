@@ -22,9 +22,7 @@ def pgcd(x, y):
 
 
 def isCoprime(a, b):
-    if a > b:
-        a, b = b, a
-    return pow(a, b - 1) % b == 1
+    return pgcd(a, b) == 1
 
 ##algo euclide etendu
 # retourne d,u,v avec pgcd(x,y)=d=ux+vy
