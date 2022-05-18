@@ -1,16 +1,21 @@
 import unittest
 
-import rsa_startK1
+import rsa_startK1 as rsa
 
 
 class MyTestCase(unittest.TestCase):
     def testPGCD(self):
-        print('fick dich')
-        self.assertEqual(1, rsa_startK1.pgcd(7,8))  # add assertion here
+        self.assertEqual(1, rsa.pgcd(7,8))
+        self.assertEqual(2, rsa.pgcd(4,2))
+        
 
     def testCoPrime(self):
 
-        self.assertEqual(True, rsa_startK1.isCoprime(3, 18980))
+        self.assertEqual(True, rsa.isCoprime(3, 18980))
+
+    def testEuclideExt(self):
+        self.assertEqual((1,27,-19987), rsa.euclide_ext(57000,77))
+
 
 
 if __name__ == '__main__':
