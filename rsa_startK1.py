@@ -110,7 +110,7 @@ def expo_modulaire_rapide(e, b, n):
 def is_prime_naive(x):
     if x <= 1:
         return False
-    for i in range(2, int(x / 2)):
+    for i in range(2, int(x / 2)+1):
         if x % i == 0:
             return False
     return True
@@ -190,15 +190,12 @@ def test_fermat(n, t):
 ##Q7
 # returns r,u such that 2^r * u = n and u is odd
 def find_ru(n):
-    if n%2 == 1:
-        raise Exception('Please use a pair number')
-
-    r = int(n/2)+1
-    for i in range(r):
+    m = int(n/2)+1
+    for r in range(m):
         u = 1
         while u<n:
-            if pow(2,i) * u == n:
-                return i, u
+            if pow(2,r) * u == n:
+                return r, u
             u +=2
     raise Exception('OOPS... something went wrong in find_ru(n)')
 
@@ -208,15 +205,41 @@ def find_ru(n):
 # pgcd(a,n)=1
 # retourne True , si a est un temoin de Rabin de non-primalite de n
 def temoin_rabin(a, n):
-    return True
 
+    r,u = find_ru(n-1)
+
+    if pow(a, u) % n == 1:
+        print(a,u, n)
+        return False
+
+    for i in range(r):
+        if pow(a,pow(2,i)*u) % n == -1:
+            print('2')
+            return False
+    return True
 
 # n entier a tester, t nombre de tests
 # retourne True , si n est premier
 # retourne False , avec proba > 1-(1/4)**t, si n est compose
-def test_rabin(n, t):
+def test_rabin(n, t=1):
+    if n == 2:
+        return True
+    if n%2 == 0:
+        return False
+
+    for i in range(t):
+        a = random.randint(2,n-1) 
+
+        if pgcd(n,a) > 1:
+            print('3')
+            return False
+
+        if temoin_rabin(a,n) == False:  
+            print('4')
+            return False
     return True
 
+#print(test_rabin(1729, 3))
 
 ##Q9
 # retourne un nombre probablement premier de n bits
