@@ -242,7 +242,7 @@ def test_rabin(n, t=1):
 ##Q9
 # retourne un nombre probablement premier de n bits
 def gen_prime(n):
-    return 2
+    return generate_prime(2, pow(2, n-1) - 1)
 
 
 ##print(gen_prime(2048))
@@ -254,8 +254,8 @@ def eulersTotient(p, q):
 # N = pq, p,q premier de n bits
 # ed = 1 mod phi(N)
 def gen_rsa(n):
-    p = generate_prime(2, pow(2, n) - 1)
-    q = generate_prime(2, pow(2, n) - 1)
+    p = gen_prime(n)
+    q = gen_prime(n)
     N = p * q
     phi = eulersTotient(p, q)
     br = True
