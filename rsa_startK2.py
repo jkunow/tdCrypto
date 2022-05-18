@@ -1,0 +1,192 @@
+### TP CRYPTO ARITHMETIQUE MODULAIRE ###
+### RSA
+
+import random
+from math import sqrt
+
+# consider changing it to test stability
+random.seed(1)
+    
+
+##Q1
+#retourne le pgcd de deux entiers naturels
+def pgcd(x,y):
+    return x
+
+
+##algo euclide etendu
+#retourne d,u,v avec pgcd(x,y)=d=ux+vy 
+def euclide_ext(x,y):
+    return x,1,0
+
+##Q2
+##retourne un entier b dans [1,N-1] avec ab=1 modulo N
+def inverse_modulaire(a,n):
+    return a
+
+##Q3
+##retourne (b**e) % n
+##ne manipule que des entiers <= b*b-b
+def expo_modulaire(e,b,n):
+    return b
+
+##Q4
+#retourne la representation de n en base 2, poids faible a gauche
+def int_to_bin(n):
+    return "0"
+
+
+##retourne (b**e) % n
+##ne manipule que des entiers <= b*b-b
+## O(log(e)) operations
+def expo_modulaire_rapide(e,b,n):
+    return b
+
+###tests de primalite###
+
+#retourne True ssi x est premier
+def is_prime_naive(x):
+    return True
+
+#retourne un entier premier, aleatoire, uniforme sur [a , a+delta]
+def generate_prime(a,delta):
+    return a
+
+#retourne un entier premier avec n, aleatoire, uniforme sur [2, n-1]
+def prime_with(n):
+    return 2
+
+##Q5
+#retourne la liste des nombres premiers <= n
+#methode du crible d Eratosthene
+def crible_eras(n):
+    return []
+
+#retourne True ssi n est premier;methode du crible
+def is_prime_eras(n):
+    return True
+
+##Q6
+
+#returne True si n est pseudo-premier pour le temoin a
+def temoin_fermat(a,n):
+    return True
+
+# n entier a tester, t nombre de tests
+def test_fermat(n,t):
+    return True
+
+##Q7
+# returns r,u such that 2^r * u = n and u is odd
+def find_ru(n):
+    return 1,1
+
+##Q8
+#n entier
+#a entier dans [1,n-2]
+#pgcd(a,n)=1
+#retourne True , si a est un temoin de Rabin de non-primalite de n
+def temoin_rabin(a,n):
+    return True
+
+
+#n entier a tester, t nombre de tests
+#retourne True , si n est premier
+#retourne False , avec proba > 1-(1/4)**t, si n est compose
+def test_rabin(n,t):
+    return True         
+
+
+##Q9
+# retourne un nombre probablement premier de n bits
+def gen_prime(n):
+    return 2
+
+##print(gen_prime(2048))
+
+# retourne un triplet e,d,N avec
+# N = pq, p,q premier de n bits
+# ed = 1 mod phi(N)
+def gen_rsa(n):
+    return 1,1,2
+
+##Q10
+# pk = (e,N)
+# m entier; retourne un entier
+def enc_rsa(m,pk):
+    return 1
+
+# sk = (d,N)
+# c entier; retourne un entier
+def dec_rsa(c,sk):
+    return 1
+
+##Q11
+##traductions: chaines --> entiers puis entiers--> chaines
+##en base 256
+##poids faibles a gauche
+def str_to_int(m):
+    s = 0
+    b = 1
+    for i in range(len(m)):
+        s = s + ord(m[i])*b
+        b = b * 256
+    return s
+
+def int_to_str(c):
+    s = ""
+    q,r = divmod(c,256)
+    s = s+str(chr(r))
+    while q != 0:
+        q,r = divmod(q,256)
+        s = s+str(chr(r))
+    return s
+
+#m est une chaine
+#retourne un entier
+def Enc_rsa(pk,m):
+    return enc_rsa(str_to_int(m),pk)
+
+#c est un entier
+#retourne une chaine
+def Dec_rsa(sk,c):
+    return int_to_str(dec_rsa(c,sk))
+
+##Q12
+#cle de longueur 512 bits
+#chiffrer: "ceci est le message de la question 12"
+
+
+
+#################################################################
+##Q13## small N de l enonce 
+c  =  203167233604391 
+e = 105153818938879
+n = 204274274459681
+#print("Q13 enonce solution", m)
+
+##Q14## n1,n2 have common factor
+pk1=(2043634736351674325052291277753576763846830012467690182499547497907740248683800435257722968614630975741639103432782246799862633229976221997746900329809685, 12552752869224097110794707960586537598829800833613778302096100576327384744031424019086248773407761185588523916077192765677351510272577377572296551050035627)
+c1=10417371910404405286122534070731080220334446633417782468039252666057073209366320666790667141999470628965907593747421486477976820240501860080718836983443658
+pk2=(5385216806561137432167962534944459133979750986524918713587923746562336358970572279261441842414935459599330248243245998507632785900285019968385568317839829, 7243941729672329942012009550763690440887637251212871971490828949062127926068865137217845640728697518982134467101145405912182375933317211757865784513662621)
+c2=5539117766825526102536767497057498635232054526144720226868779083651912597899600447945293352047394347949586429942097867576112680877484299095123570380916293
+#print("Q14 enonce solution m1:", m1)
+#print("Q14 enonce solution m2:", m2)
+
+##Q15## same-small e
+pk3 = (3, 7018877804493645589896021208996460591074223128496105445102104211951893669475826332952333987093607160396666901085027127924342177970682642170613643538402249)
+c3  = 33439991549832281478995907822462126775586418921608
+pk4 = (3, 11554306025534541025809965160818966181599112895956694073146289465140929607380861346834147392238428814813735342319916841792068132646489591087250747156109559)
+c4  = 33439991549832281478995907822462126775586418921608
+pk5 = (3, 6322580413277053941311188359426625254766496006121456544654761928112601682659210994762104694134971179434799383532408411260653005555218838143051135509860957)
+c5  = 33439991549832281478995907822462126775586418921608
+#print("Q15 enonce solution m:", m)
+
+##Q16## same N=N6=N7 and pair (e7,d7) is known
+pk6 =(2893777703539322891588924466731299853824726347081625487200933495113323742329677197609929812343849847744112127209167656770366860890185317332158067781821959, 5332493321252790631541883874068008534512919951912037550777241182818536313777526399076337403480520553642070924965888946244068487192594524362100391748535499)
+c6  =649758713241198951582459469119163872883460262408062025668911939221676972648198577225587818051646802352941502773315744897724144413322632315369162113877331
+pk7 =(902927105734135574071183519216294171749795133679037803384562670168068712884883326350625711297293481972032531985038947320030178836438735372788012787928459, 5332493321252790631541883874068008534512919951912037550777241182818536313777526399076337403480520553642070924965888946244068487192594524362100391748535499)
+sk7 =(73226660033580052467510864618077031333915612139332445632110286856966334314824441658841797977052349005256341374930546324570366802296054138331891148464651, 5332493321252790631541883874068008534512919951912037550777241182818536313777526399076337403480520553642070924965888946244068487192594524362100391748535499)
+#print("Q16 enonce solution m6:", m6)
+
+
