@@ -42,8 +42,14 @@ def euclide_ext(x, y):
 ##Q2
 ##retourne un entier b dans [1,N-1] avec ab=1 modulo N
 def inverse_modulaire(a, n):
+    g, x, y = euclide_ext(a, n)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % n
     return a
 
+#print(inverse_modulaire(7,20))
 
 ##Q3
 ##retourne (b**e) % n
