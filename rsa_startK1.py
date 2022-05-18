@@ -258,11 +258,10 @@ def gen_rsa(n):
     q = gen_prime(n)
     N = p * q
     phi = eulersTotient(p, q)
-    br = True
-    while br:
-        e = generate_prime(1000, 10000)
+    while True:
+        e = generate_prime(10, 100)
         if isCoprime(e, phi):
-            br = False
+            break
     d = inverse_modulaire(e, phi)
 
     return e, d, N
