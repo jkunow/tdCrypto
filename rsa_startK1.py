@@ -52,13 +52,14 @@ def expo_modulaire(e, b, n):
     if n == 1:
         return 0
     opCount = 0
-    result = 1
-    for i in range(e):
+    result = b
+    for i in range(e-1):
         result = (result * b) % n
         opCount += 1
     print("opcount = " + str(opCount))
     return result
 
+#print(expo_modulaire(3,111, 13))
 
 ##Q4
 # retourne la representation de n en base 2, poids faible a gauche
