@@ -22,9 +22,7 @@ def pgcd(x, y):
 
 
 def isCoprime(a, b):
-    if a > b:
-        a, b = b, a
-    return pow(a, b - 1) % b == 1
+    return pgcd(a, b) == 1
 
 ##algo euclide etendu
 # retourne d,u,v avec pgcd(x,y)=d=ux+vy
@@ -244,27 +242,26 @@ def test_rabin(n, t=1):
 ##Q9
 # retourne un nombre probablement premier de n bits
 def gen_prime(n):
-    return 2
+    return generate_prime(2, pow(2, n-1) - 1)
 
 
 ##print(gen_prime(2048))
 
 def eulersTotient(p, q):
-    return (p-q) * (q-1)
+    return (p-1) * (q-1)
 
 # retourne un triplet e,d,N avec
 # N = pq, p,q premier de n bits
 # ed = 1 mod phi(N)
 def gen_rsa(n):
-    p = generate_prime(2, pow(2, n) - 1)
-    q = generate_prime(2, pow(2, n) - 1)
+    p = gen_prime(n)
+    q = gen_prime(n)
     N = p * q
     phi = eulersTotient(p, q)
-    br = True
-    while br:
-        e = generate_prime(1000, 10000)
+    while True:
+        e = generate_prime(10, 100)
         if isCoprime(e, phi):
-            br = False
+            break
     d = inverse_modulaire(e, phi)
 
     return e, d, N
