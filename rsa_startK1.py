@@ -17,7 +17,7 @@ def pgcd(x,y):
         x = x%y
     return y
 
-print(pgcd(91,14))
+#print(pgcd(91,14))
 
 ##algo euclide etendu
 #retourne d,u,v avec pgcd(x,y)=d=ux+vy 
@@ -37,6 +37,7 @@ def euclide_ext(x,y):
 #pgcd,u,v = euclide_ext(x,y)
 
 #print(x, ' * ', u, ' + ', y, ' * ', v, ' = ', pgcd)
+
 ##Q2
 ##retourne un entier b dans [1,N-1] avec ab=1 modulo N
 def inverse_modulaire(a,n):
