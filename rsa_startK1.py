@@ -41,7 +41,9 @@ def expo_modulaire(e,b,n):
 ##Q4
 #retourne la representation de n en base 2, poids faible a gauche
 def int_to_bin(n):
-    return "0"
+    result = str(bin(n))
+    result = result[2:len(result)]
+    return result[::-1]
 
 
 ##retourne (b**e) % n
