@@ -20,6 +20,10 @@ def pgcd(x, y):
 
 # print(pgcd(91,14))
 
+
+def isCoprime(a,b):
+    return pow(a, b - 1) % b == 1
+
 ##algo euclide etendu
 # retourne d,u,v avec pgcd(x,y)=d=ux+vy
 def euclide_ext(x, y):
@@ -49,7 +53,8 @@ def inverse_modulaire(a, n):
         return x % n
     return a
 
-#print(inverse_modulaire(7,20))
+
+# print(inverse_modulaire(7,20))
 
 ##Q3
 ##retourne (b**e) % n
@@ -96,7 +101,7 @@ def expo_modulaire_rapide(e, b, n):
     return result
 
 
-#print(expo_modulaire_rapide(17, 4, 497))
+# print(expo_modulaire_rapide(17, 4, 497))
 
 
 ###tests de primalite###
@@ -105,48 +110,56 @@ def expo_modulaire_rapide(e, b, n):
 def is_prime_naive(x):
     if x <= 1:
         return False
-    for i in range(2,int(x/2)):
+    for i in range(2, int(x / 2)):
         if x % i == 0:
             return False
     return True
 
-#print(is_prime_naive(13))
+
+# print(is_prime_naive(13))
 
 # retourne un entier premier, aleatoire, uniforme sur [a , a+delta]
 def generate_prime(a, delta):
-    r = random.randint(a, a+delta)
-    i=0
+    r = random.randint(a, a + delta)
+    i = 0
     while is_prime_naive(r) == False:
         if i > 100000:
-            raise Exception('After 100000 iterations no prime was found in the given intervall [{},{}]\nPlease retry with a new intervall'.format(a,a+delta))
-        r = random.randint(a, a+delta)
-        i+=1
+            raise Exception(
+                'After 100000 iterations no prime was found in the given intervall [{},{}]\nPlease retry with a new intervall'.format(
+                    a, a + delta))
+        r = random.randint(a, a + delta)
+        i += 1
     return r
 
-#print(generate_prime(9,1))
+
+# print(generate_prime(9,1))
 
 
 # retourne un entier premier avec n, aleatoire, uniforme sur [2, n-1]
 def prime_with(n):
-    return 2
+    a = random.randint(2, n-1)
+    while not isCoprime(a, n):
+        a = random.randint(2, n-1)
+    return a
 
 
 ##Q5
 # retourne la liste des nombres premiers <= n
 # methode du crible d Eratosthene
 def crible_eras(n):
-    primes = []  
-    numbers = list(range(2, n+1)) 
-    c = 2           
-    while c * c < n: 
-        for k in range(c, (n+1), c): 
-            if k in numbers:              
-                numbers.remove(k)         
-        primes.append(c)             
-        c = numbers[0]                    
-    return primes + numbers          
+    primes = []
+    numbers = list(range(2, n + 1))
+    c = 2
+    while c * c < n:
+        for k in range(c, (n + 1), c):
+            if k in numbers:
+                numbers.remove(k)
+        primes.append(c)
+        c = numbers[0]
+    return primes + numbers
 
-#print(crible_eras(25))
+
+# print(crible_eras(25))
 
 # retourne True ssi n est premier;methode du crible
 def is_prime_eras(n):
@@ -159,13 +172,20 @@ def is_prime_eras(n):
 
 # returne True si n est pseudo-premier pour le temoin a
 def temoin_fermat(a, n):
-    return True
+    return isCoprime(a, n)
 
 
 # n entier a tester, t nombre de tests
 def test_fermat(n, t):
+    test = random.sample(range(1, n), t)
+    for i in test:
+        if not temoin_fermat(i, n):
+            return False
     return True
 
+
+# print("Is 6287 prime: " + str(test_fermat(6287, 6286)))
+# print("Is 6286 prime: " + str(test_fermat(6286, 6285)))
 
 ##Q7
 # returns r,u such that 2^r * u = n and u is odd
