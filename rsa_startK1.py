@@ -124,7 +124,7 @@ def is_prime_naive(x):
 def generate_prime(a, delta):
     r = random.randint(a, a + delta)
     i = 0
-    while is_prime_naive(r) == False:
+    while not is_prime_naive(r):
         if i > 100000:
             raise Exception(
                 'After 100000 iterations no prime was found in the given intervall [{},{}]\nPlease retry with a new intervall'.format(
@@ -219,12 +219,28 @@ def gen_prime(n):
 
 ##print(gen_prime(2048))
 
+def eulersTotient(p, q):
+    return (p-q) * (q-1)
+
 # retourne un triplet e,d,N avec
 # N = pq, p,q premier de n bits
 # ed = 1 mod phi(N)
 def gen_rsa(n):
-    return 1, 1, 2
+    p = generate_prime(2, pow(2, n) - 1)
+    q = generate_prime(2, pow(2, n) - 1)
+    N = p * q
+    phi = eulersTotient(p, q)
+    br = True
+    while br:
+        e = generate_prime(1000, 10000)
+        if isCoprime(e, phi):
+            br = False
+    d = inverse_modulaire(e, phi)
 
+    return e, d, N
+
+
+# print("RSA keys: " + str(gen_rsa(10)))
 
 ##Q10
 # pk = (e,N)
