@@ -170,8 +170,17 @@ def test_fermat(n, t):
 ##Q7
 # returns r,u such that 2^r * u = n and u is odd
 def find_ru(n):
-    return 1, 1
+    if n%2 == 1:
+        raise Exception('Please use a pair number')
 
+    r = int(n/2)+1
+    for i in range(r):
+        u = 1
+        while u<n:
+            if pow(2,i) * u == n:
+                return i, u
+            u +=2
+    raise Exception('OOPS... something went wrong in find_ru(n)')
 
 ##Q8
 # n entier
