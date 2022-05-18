@@ -11,6 +11,8 @@ random.seed(1)
 ##Q1
 # retourne le pgcd de deux entiers naturels
 def pgcd(x, y):
+    if x <= 0 or y <= 0:
+        raise Exception("Numbers <= 0 not permitted")
     while x % y != 0:
         if y > x:
             x, y = y, x
