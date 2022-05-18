@@ -87,8 +87,9 @@ def int_to_bin(n):
 ##ne manipule que des entiers <= b*b-b
 ## O(log(e)) operations
 def expo_modulaire_rapide(e, b, n):
+    if n == 1:
+        return 0
     ebin = int_to_bin(e)
-    print(ebin)
     opCount = 0
     result = 1
     b = b % n
