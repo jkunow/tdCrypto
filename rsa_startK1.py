@@ -146,7 +146,9 @@ def crible_eras(n):
 
 # retourne True ssi n est premier;methode du crible
 def is_prime_eras(n):
-    return True
+    if n in crible_eras(n):
+        return True
+    return False
 
 
 ##Q6
