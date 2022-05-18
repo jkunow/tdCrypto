@@ -106,8 +106,6 @@ def is_prime_naive(x):
 
 #print(is_prime_naive(13))
 
-import random
-
 # retourne un entier premier, aleatoire, uniforme sur [a , a+delta]
 def generate_prime(a, delta):
     r = random.randint(a, a+delta)
