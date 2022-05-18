@@ -52,12 +52,15 @@ def expo_modulaire(e, b, n):
     if n == 1:
         return 0
     opCount = 0
-    result = 1
-    for i in range(e):
+    result = b
+    for i in range(e - 1):
         result = (result * b) % n
         opCount += 1
     print("opcount = " + str(opCount))
     return result
+
+
+# print(expo_modulaire(1048576, 4, 497))
 
 
 ##Q4
@@ -72,7 +75,21 @@ def int_to_bin(n):
 ##ne manipule que des entiers <= b*b-b
 ## O(log(e)) operations
 def expo_modulaire_rapide(e, b, n):
-    return b
+    ebin = int_to_bin(e)
+    opCount = 0
+    result = 1
+    b = b % n
+    for i in ebin:
+        if i == '1':
+            result = (result * b) % n
+            opCount += 1
+        b = (b * b) % n
+        opCount += 1
+    print("opcount = " + str(opCount))
+    return result
+
+
+# print(expo_modulaire_rapide(1048576, 4, 497))
 
 
 ###tests de primalite###
